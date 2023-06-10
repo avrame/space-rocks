@@ -87,13 +87,13 @@ module Space::Rocks
 
     def initialize(x : Float64, y : Float64)
       @ship_body = Shape.new([
-        Line.new(0, -6, 4, 5),
-        Line.new(0, -6, -4, 5),
-        Line.new(-2.25, 3, 2.25, 3),
+        Line.new(0, -12, 8, 10),
+        Line.new(0, -12, -8, 10),
+        Line.new(-6, 6, 6, 6),
       ], true)
       @ship_thrust = Shape.new([
-        Line.new(-2.25, 3, 0, 6.25),
-        Line.new(2.25, 3, 0, 6.25),
+        Line.new(-4.5, 6, 0, 12.5),
+        Line.new(4.5, 6, 0, 12.5),
       ], false)
       super(x, y, [@ship_body, @ship_thrust])
     end
