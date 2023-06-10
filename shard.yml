@@ -1,0 +1,17 @@
+name: space-rocks
+version: 0.1.0
+
+authors:
+  - Avram Eisner <avrame@gmail.com>
+
+targets:
+  space-rocks:
+    main: src/space-rocks.cr
+
+dependencies:
+  raylib-cr:
+    github: avrame/raylib-cr
+
+crystal: 1.8.2
+
+license: MIT

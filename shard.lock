@@ -1,0 +1,6 @@
+version: 2.0
+shards:
+  raylib-cr:
+    git: https://github.com/avrame/raylib-cr.git
+    version: 0.9+git.commit.5eec10856c401670d8ae217a71a8bad3fb906c60
+
