@@ -83,7 +83,7 @@ module Space::Rocks
   class Ship < VectorSprite
     @thrust = 0.025
     @rotate_speed = 0.1
-    @vel_max = 2.5
+    @vel_max = 3
 
     def initialize(x : Float64, y : Float64)
       @ship_body = Shape.new([
@@ -103,12 +103,12 @@ module Space::Rocks
     end
 
     def accelerate
-      @velocity.x = @velocity.x + Math.sin(@rotation) * @thrust
-      @velocity.y = @velocity.y - Math.cos(@rotation) * @thrust
+      new_velocity = Rl::Vector2.zero
+      new_velocity.x = @velocity.x + Math.sin(@rotation) * @thrust
+      new_velocity.y = @velocity.y - Math.cos(@rotation) * @thrust
 
-      if @velocity.length > @vel_max
-        @velocity.x = Math.sin(@rotation) * @vel_max
-        @velocity.y = -Math.cos(@rotation) * @vel_max
+      if new_velocity.length < @vel_max
+        @velocity = new_velocity
       end
     end
 
