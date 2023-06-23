@@ -3,8 +3,8 @@ require "./vector-sprite"
 require "./shape"
 
 class Ship < VectorSprite
-  @thrust = 0.025
-  @rotate_speed = 0.1
+  @thrust = 1
+  @rotate_speed = 6
   @vel_max = 3
 
   def initialize(position : Rl::Vector2)
@@ -13,10 +13,10 @@ class Ship < VectorSprite
     super(position, [@ship_body, @ship_thrust])
   end
 
-  def accelerate
+  def accelerate(delta_time : Float64)
     new_velocity = Rl::Vector2.zero
-    new_velocity.x = @velocity.x + Math.sin(@rotation) * @thrust
-    new_velocity.y = @velocity.y - Math.cos(@rotation) * @thrust
+    new_velocity.x = @velocity.x + Math.sin(@rotation) * @thrust * delta_time
+    new_velocity.y = @velocity.y - Math.cos(@rotation) * @thrust * delta_time
 
     if new_velocity.length < @vel_max
       @velocity = new_velocity
@@ -29,5 +29,13 @@ class Ship < VectorSprite
 
   def hide_thrust
     @ship_thrust.visible = false
+  end
+
+  def rotate_cl(delta_time : Float64)
+    rotate(@rotate_speed * delta_time)
+  end
+
+  def rotate_ccl(delta_time : Float64)
+    rotate(-1 * @rotate_speed * delta_time)
   end
 end

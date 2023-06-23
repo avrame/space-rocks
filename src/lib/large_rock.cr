@@ -18,11 +18,11 @@ class LargeRock < VectorSprite
       y: Random.rand(SpaceRocks.virtual_screen_height)
     )
     @velocity = Rl::Vector2.new(x: Random.rand(-2.0..2.0), y: Random.rand(-2.0..2.0))
-    @rotate_speed = Random.new.rand(-0.05..0.05)
+    @rotate_speed = Random.new.rand(-4.0..4.0)
     super(position, [rock_shape])
   end
 
-  def rotate
-    super(@rotate_speed)
+  def rotate(delta_time)
+    super(@rotate_speed * delta_time)
   end
 end
