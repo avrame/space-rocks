@@ -7,12 +7,13 @@ class LargeRock < VectorSprite
 
   def initialize
     rock_shape = Shape.new([
-      Line.new(-12, -12, 0, -14),
-      Line.new(0, -14, 12, -12),
-      Line.new(12, -12, 16, -4),
-      Line.new(16, -4, 12, 12),
-      Line.new(12, 12, -12, 12),
-      Line.new(-12, 12, -12, -12),
+      Rl::Vector2.new(x: -12, y: 12),
+      Rl::Vector2.new(x: 0, y: -14),
+      Rl::Vector2.new(x: 12, y: -12),
+      Rl::Vector2.new(x: 16, y: -4),
+      Rl::Vector2.new(x: 12, y: 12),
+      Rl::Vector2.new(x: -12, y: 12),
+      Rl::Vector2.new(x: -12, y: -12),
     ], true)
 
     position = Rl::Vector2.new(x: Random.rand(x: SpaceRocks.virtual_screen_width), y: Random.rand(SpaceRocks.virtual_screen_height))

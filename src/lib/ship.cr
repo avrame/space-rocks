@@ -1,3 +1,4 @@
+require "raylib-cr"
 require "./vector-sprite"
 require "./shape"
 
@@ -8,14 +9,19 @@ class Ship < VectorSprite
 
   def initialize(position : Rl::Vector2)
     @ship_body = Shape.new([
-      Line.new(0, -12, 8, 10),
-      Line.new(0, -12, -8, 10),
-      Line.new(-6, 6, 6, 6),
-    ], true)
+      Rl::Vector2.new(x: -8, y: 10),
+      Rl::Vector2.new(x: 0, y: -12),
+      Rl::Vector2.new(x: 8, y: 10),
+      Rl::Vector2.new(x: 6, y: 6),
+      Rl::Vector2.new(x: -6, y: 6),
+    ],
+      visible: true)
     @ship_thrust = Shape.new([
-      Line.new(-4.5, 6, 0, 12.5),
-      Line.new(4.5, 6, 0, 12.5),
-    ], false)
+      Rl::Vector2.new(x: -4.5, y: 6),
+      Rl::Vector2.new(x: 0, y: 12.5),
+      Rl::Vector2.new(x: 4.5, y: 6),
+    ],
+      visible: false)
     super(position, [@ship_body, @ship_thrust])
   end
 

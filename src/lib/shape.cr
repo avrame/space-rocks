@@ -1,24 +1,31 @@
+require "raylib-cr"
 require "./line"
 
 class Shape
   property visible : Bool
 
-  def initialize(@lines : Array(Line), visible : Bool)
+  def initialize(@points : Array(Rl::Vector2), visible : Bool)
     @visible = visible
   end
 
-  def draw(parent_x : Float64, parent_y : Float64)
+  def draw(parent_pos : Rl::Vector2)
     if !@visible
       return
     end
-    @lines.each do |line|
-      line.draw(parent_x, parent_y)
+
+    absolute_points = @points.map do |line|
+      line.add(parent_pos)
     end
+
+    Rl.draw_line_strip(absolute_points, absolute_points.size, Rl::WHITE)
   end
 
   def rotate(deg : Float64)
-    @lines.each do |line|
-      line.rotate(deg)
+    # @lines.each do |line|
+    #   line.rotate(deg)
+    # end
+    @points = @points.map do |point|
+      point.rotate(deg)
     end
   end
 end

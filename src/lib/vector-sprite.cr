@@ -36,7 +36,7 @@ class VectorSprite
 
   def draw
     @shapes.each do |shape|
-      shape.draw(@position.x, @position.y)
+      shape.draw(@position)
     end
   end
 end
