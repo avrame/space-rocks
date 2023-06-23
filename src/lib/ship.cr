@@ -8,20 +8,8 @@ class Ship < VectorSprite
   @vel_max = 3
 
   def initialize(position : Rl::Vector2)
-    @ship_body = Shape.new([
-      Rl::Vector2.new(x: -8, y: 10),
-      Rl::Vector2.new(x: 0, y: -12),
-      Rl::Vector2.new(x: 8, y: 10),
-      Rl::Vector2.new(x: 6, y: 6),
-      Rl::Vector2.new(x: -6, y: 6),
-    ],
-      visible: true)
-    @ship_thrust = Shape.new([
-      Rl::Vector2.new(x: -4.5, y: 6),
-      Rl::Vector2.new(x: 0, y: 12.5),
-      Rl::Vector2.new(x: 4.5, y: 6),
-    ],
-      visible: false)
+    @ship_body = Shape.new([{-8.0, 10.0}, {0.0, -12.0}, {8.0, 10.0}, {6.0, 6.0}, {-6.0, 6.0}], visible: true)
+    @ship_thrust = Shape.new([{-4.5, 6.0}, {0.0, 12.5}, {4.5, 6.0}], visible: false)
     super(position, [@ship_body, @ship_thrust])
   end
 
