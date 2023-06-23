@@ -7,10 +7,10 @@ class Ship < VectorSprite
   @rotate_speed = 6
   @vel_max = 3
 
-  def initialize(position : Rl::Vector2)
+  def initialize(position : Rl::Vector2, @virtual_screen_width, @virtual_screen_height)
     @ship_body = Shape.new([{-8.0, 10.0}, {0.0, -12.0}, {8.0, 10.0}, {6.0, 6.0}, {-6.0, 6.0}], visible: true)
     @ship_thrust = Shape.new([{-4.5, 6.0}, {0.0, 12.5}, {4.5, 6.0}], visible: false)
-    super(position, [@ship_body, @ship_thrust])
+    super(position, [@ship_body, @ship_thrust], @virtual_screen_width, @virtual_screen_height)
   end
 
   def accelerate(delta_time : Float64)

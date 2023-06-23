@@ -3,11 +3,13 @@ require "../space-rocks"
 require "./shape"
 
 class VectorSprite
+  @virtual_screen_width : Float64
+  @virtual_screen_height : Float64
   property position
   property velocity = Rl::Vector2.zero
   property rotation : Float64 = 0
 
-  def initialize(@position : Rl::Vector2, @shapes : Array(Shape))
+  def initialize(@position : Rl::Vector2, @shapes : Array(Shape), @virtual_screen_width, @virtual_screen_height)
   end
 
   def rotate(deg)
@@ -22,14 +24,14 @@ class VectorSprite
     @position.y += @velocity.y
 
     if @position.x < 0
-      @position.x = SpaceRocks.virtual_screen_width.to_f64
-    elsif @position.x > SpaceRocks.virtual_screen_width
+      @position.x = @virtual_screen_width
+    elsif @position.x > @virtual_screen_width
       @position.x = 0
     end
 
     if @position.y < 0
-      @position.y = SpaceRocks.virtual_screen_height.to_f64
-    elsif @position.y > SpaceRocks.virtual_screen_height
+      @position.y = @virtual_screen_height
+    elsif @position.y > @virtual_screen_height
       @position.y = 0
     end
   end
