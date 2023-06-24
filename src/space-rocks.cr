@@ -3,13 +3,12 @@ require "./lib/game"
 require "./lib/ship"
 require "./lib/large_rock"
 
-space_rocks = SpaceRocksGame.new
-# space_rocks.scale = 1.5
+space_rocks = SpaceRocksGame.new(scale: 1.5)
 space_rocks.run
 
 class SpaceRocksGame < Game
-  def initialize
-    super()
+  def initialize(screen_width = 960, screen_height = 540, scale = 1.0, target_fps = 60.to_i8)
+    super(screen_width, screen_height, scale, target_fps)
     center_of_screen = Rl::Vector2.new
     center_of_screen.x = virtual_screen_width / 2
     center_of_screen.y = virtual_screen_height / 2

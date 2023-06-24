@@ -1,14 +1,17 @@
 require "raylib-cr"
 
 class Game
-  property scale
-  property screen_width
-  property screen_height
+  property scale : Float64
+  property screen_width : Int32
+  property screen_height : Int32
+  property target_fps : Int8
 
-  def initialize(@screen_width = 960, @screen_height = 540, @scale = 1.0, @target_fps = 60)
+  def initialize(@screen_width, @screen_height, @scale, @target_fps)
+    puts "Game.initialize virtual_screen_width, virtual_screen_height", virtual_screen_width, virtual_screen_height
   end
 
   def run
+    puts "Game.run virtual_screen_width, virtual_screen_height", virtual_screen_width, virtual_screen_height
     virtual_width_ratio = @screen_width.to_f / virtual_screen_width.to_f
     virtual_height_ratio = @screen_height.to_f / virtual_screen_height.to_f
 
