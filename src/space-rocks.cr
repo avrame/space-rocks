@@ -14,7 +14,10 @@ class SpaceRocksGame < Game
     center_of_screen.y = virtual_screen_height / 2
     @ship = Ship.new(center_of_screen, virtual_screen_width, virtual_screen_height)
 
-    @lg_rock = LargeRock.new(virtual_screen_width, virtual_screen_height)
+    @rocks = [] of LargeRock
+    (0..2).each do |_|
+      @rocks << LargeRock.new(virtual_screen_width, virtual_screen_height)
+    end
   end
 
   def update(dt)
@@ -31,13 +34,16 @@ class SpaceRocksGame < Game
       @ship.rotate_cl(dt)
     end
 
-    @ship.move
-    @lg_rock.move
-    @lg_rock.rotate(dt)
+    @ship.update
+    @rocks.each do |rock|
+      rock.update(dt)
+    end
   end
 
   def draw(dt)
     @ship.draw
-    @lg_rock.draw
+    @rocks.each do |rock|
+      rock.draw
+    end
   end
 end

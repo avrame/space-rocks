@@ -19,7 +19,7 @@ class VectorSprite
     end
   end
 
-  def move
+  def update
     @position.x += @velocity.x
     @position.y += @velocity.y
 
@@ -34,6 +34,11 @@ class VectorSprite
     elsif @position.y > @virtual_screen_height
       @position.y = 0
     end
+  end
+
+  def update(deg)
+    update
+    rotate(deg)
   end
 
   def draw
