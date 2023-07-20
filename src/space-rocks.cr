@@ -2,6 +2,7 @@ require "raylib-cr"
 require "./lib/game"
 require "./lib/ship"
 require "./lib/large_rock"
+require "./lib/bullet"
 
 space_rocks = SpaceRocksGame.new(scale: 1.5)
 space_rocks.run
@@ -18,6 +19,8 @@ class SpaceRocksGame < Game
     (0..2).each do |_|
       @rocks << LargeRock.new(virtual_screen_width, virtual_screen_height)
     end
+
+    @bullets = [] of Bullet
   end
 
   def update(dt)
@@ -34,16 +37,27 @@ class SpaceRocksGame < Game
       @ship.rotate_cl(dt)
     end
 
+    if Rl.key_released? Rl::KeyboardKey::Space
+      @bullets << Bullet.new(@ship.position, @ship.rotation, virtual_screen_width, virtual_screen_height)
+    end
+
     @ship.update
     @rocks.each do |rock|
       rock.update(dt)
     end
+    @bullets.each do |bullet|
+      bullet.update(dt)
+    end
+    @bullets.reject! { |bullet| bullet.die }
   end
 
   def draw(dt)
     @ship.draw
     @rocks.each do |rock|
       rock.draw
+    end
+    @bullets.each do |bullet|
+      bullet.draw
     end
   end
 end

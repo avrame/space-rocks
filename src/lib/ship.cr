@@ -1,6 +1,7 @@
 require "raylib-cr"
 require "./vector-sprite"
 require "./shape"
+require "./bullet"
 
 class Ship < VectorSprite
   @thrust = 1
