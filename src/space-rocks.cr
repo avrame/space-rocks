@@ -38,7 +38,7 @@ class SpaceRocksGame < Game
     end
 
     if Rl.key_released? Rl::KeyboardKey::Space
-      @bullets << Bullet.new(@ship.position, @ship.rotation, virtual_screen_width, virtual_screen_height)
+      @bullets << Bullet.new(@ship.position, @ship.velocity, @ship.rotation, virtual_screen_width, virtual_screen_height)
     end
 
     @ship.update

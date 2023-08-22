@@ -6,12 +6,20 @@ class Bullet
   @virtual_screen_width : Float64
   @virtual_screen_height : Float64
   @time_alive : Float32 = 0
+  @position : Rl::Vector2 = Rl::Vector2.zero
   getter die : Bool = false
 
-  def initialize(@position : Rl::Vector2, @direction : Float64, @virtual_screen_width, @virtual_screen_height)
+  def initialize(ship_position : Rl::Vector2, ship_velocity : Rl::Vector2, @direction : Float64, @virtual_screen_width, @virtual_screen_height)
+    x_dx = Math.sin(@direction)
+    y_dx = -Math.cos(@direction)
+
+    # Start the bullet at the front tip of the ship
+    @position.x = ship_position.x + x_dx * 5
+    @position.y = ship_position.y + y_dx * 5
+
     @velocity = Rl::Vector2.zero
-    @velocity.x = @velocity.x + Math.sin(@direction) * @@speed
-    @velocity.y = @velocity.y - Math.cos(@direction) * @@speed
+    @velocity.x = ship_velocity.x + x_dx * @@speed
+    @velocity.y = ship_velocity.y + y_dx * @@speed
   end
 
   def update(dt)
