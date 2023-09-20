@@ -4,9 +4,10 @@ require "./shape"
 require "./bullet"
 
 class Ship < VectorSprite
-  @thrust = 1
+  @thrust = 2
   @rotate_speed = 6
-  @vel_max = 3
+  @vel_max = 8
+  @friction = 1.01
 
   def initialize(position : Rl::Vector2, @virtual_screen_width, @virtual_screen_height)
     @ship_body = Shape.new([{-8.0, 10.0}, {0.0, -12.0}, {8.0, 10.0}, {6.0, 6.0}, {-6.0, 6.0}], visible: true)
@@ -21,6 +22,12 @@ class Ship < VectorSprite
 
     if new_velocity.length < @vel_max
       @velocity = new_velocity
+    end
+  end
+
+  def slow_down()
+    if @velocity.length > 0
+      @velocity = @velocity / @friction
     end
   end
 

@@ -4,11 +4,11 @@ require "./lib/ship"
 require "./lib/large_rock"
 require "./lib/bullet"
 
-space_rocks = SpaceRocksGame.new(scale: 1.5)
+space_rocks = SpaceRocksGame.new(scale: 1.0)
 space_rocks.run
 
 class SpaceRocksGame < Game
-  def initialize(screen_width = 960, screen_height = 540, scale = 1.0, target_fps = 60.to_i8)
+  def initialize(screen_width = 960, screen_height = 593, scale = 1.0, target_fps = 60.to_i8)
     super(screen_width, screen_height, scale, target_fps)
     center_of_screen = Rl::Vector2.new
     center_of_screen.x = virtual_screen_width / 2
@@ -28,6 +28,7 @@ class SpaceRocksGame < Game
       @ship.accelerate(dt)
       @ship.show_thrust
     else
+      @ship.slow_down()
       @ship.hide_thrust
     end
 

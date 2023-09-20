@@ -1,5 +1,5 @@
 class Bullet
-  @@speed : Float64 = 3
+  @@speed : Float64 = 8
   @@size : Float64 = 1.5
   @@life_span : Float32 = 1.5
 
